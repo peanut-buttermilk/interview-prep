@@ -1,0 +1,141 @@
+Key Characteristics,Scalability,Availability,Reliability,Efficiency,Serviceability or Manageability,,
+Scalability,Horizontal,Vertical,,,,,
+Horizontal Scaling,Distributed systems,Sharding,Load balancers,Distributed cache / storage,Distributed Message Queues,Streaming Queues,
+Vertical Scaling,Scale H/W,,,,,,
+Load Balancing Algos,Methods:,Least Connection,Least Response Time,Least Bandwidth,Round Robin,Weighted Round Robin,IP Hash
+Caching,Application Server Cache,CDN,Cache Invalidation,Cache Eviction Policies,,,
+Cache Invalidation,Write-through,Write-around,Write-back,,,,
+Cache Eviction Policies,FIFO,LIFO,LRU,MRU,LFU,Random Replacement(RR),TTL
+Distributed Caches,Redis/Memcached,,,,,,
+Sharding/Data Partitioning Methods,Horizontal,Vertical,Directory Based,,,,
+Vertical Sharding/Partitioning,Service based sharding,,,,,,
+Horizontal Partitioning Criteria,Key or Hash-based,List partitioning,Round-robin,Composite Partitioning,,,
+Partitioning Problems,Joins and Denormalization,Referential Integrity,Rebalancing,,,,
+Indexes,"Problems: Adding/updating new
+ values costs rebulding of index",,,,,,
+Proxies,Proxy Server,Reverse Proxy,,,,,
+,Collapsed forwarding,,,,,,
+Redundancy and Replication,,,,,,,
+SQL vs NoSQL,Relational (SQL),Non-Relational (NoSQL),,,,,
+SQL vs NoSQL Differences,Storage,Schema,Querying,Scalability,"Reliability or ACID
+(atomicity, consistency, 
+isolation, durability)",,
+Relational (SQL),MySQL,Oracle,MS SQL Server,SQLite,Postgres,MariaDB,
+Non-Relational (NoSQL),Key-Value Stores,Document DBs,Wide-Column DBs,Graph DBs,,,
+Key-Value Stores,Redis,Voldemort,Dynamo,,,,
+Document DBs,CouchDB,MongoDB,,,,,
+"Wide-Column DBs
+Ex: Instagram userphotos/followers
+",Cassandra,Hbase,,,,,
+Graph DBs,Neo4j,InfiniteGraph,,,,,
+SQL Usage Reasons,ACID Compliance,Structured data without growth,,,,,
+NoSQL Usage Reasons,"Large volumes of data 
+with little or no structure","Cloud storage - data spread
+",Rapid development,,,,
+CAP Theorem,"In the presence of a network partition, 
+a distributed system must choose either
+ Consistency or Availability.",,,,,,
+CAP Theorem,"Consistency
+All nodes see same data at same time
+","Availability
+Ability to remain accessible even
+ if one or more failures
+","Partition Tolerance
+Continue to operate even if there
+are network failures and resulting
+in partitions
+",,,,
+Constistency & Availability,RDBMS,,,,,,
+Constistency & Partition tolerance,"BigTable, HBase",,,,,,
+Availability & Partition tolerance,"Dynamo, Cassandra, CouchDB",,,,,,
+"PACELC Theorem
+P?AC:LC
+If P: AC else LC
+P: Partition, A: Availability
+C: Consistency
+E: Else
+L: Latency, C: Consistency
+","Problem with CAP: what choices does a
+distributed system have when there is no
+partition?
+Solution: PACELC
+","ACID: 
+
+Choose Consistency","BASE(Basically Available
+Soft-state
+Eventually consistent) 
+chose Availability
+",,,,
+PACELC: PA/EL,Dynamo and Cassandra,,,,,,
+PACELC: PC/EC,"BigTable, HBase",,,,,,
+PACELC: PA/EC,MongoDB,,,,,,
+"Consistent Hashing
+Amzn: Dynamo
+Apache: Cassandra
+","Consistent Hashing maps data to physical
+ nodes and ensures that only a small set 
+of keys move when servers are added or
+ removed","Problem with basic consistent hashing: 
+Non uniform data and load 
+distribution
+Solution: Virtual Nodes
+",,,,,
+Basic Consistent Hashing problems,Adding/Removing Nodes,Hotspots,Node rebuilding,,,,
+Consistent Hashing,"Divide hash range into multiple smaller
+ ranges and each physical node is 
+assigned several of these smaller ranges","Vnode advantage:
+Even data spread
+cluster with heterogeneous machines
+decrease hotspots with smaller ranges
+",,,,,
+Consistent Hashing - Data replication,"Replication factor: N
+Coordinator node stores and replicates to
+ N-1 clocwise successor nodes.
+Eventual consistent: replicate async
+",,,,,,
+Polling,"Ajax Polling: 
+Client sends repeated requests for data
+Server replies with data or empty response
+","HTTP Long-Polling
+Client requests and waits for
+ response
+Server holds the requests until 
+data is available 
+","WebSockets:
+Full duplex communication channel 
+over a single TCP
+Client/Server can send data at any time
+","Server Sent Events(SSEs)
+",,,
+Bloom Filters,"The Bloom filter data structure tells whether
+an element may be in a set, or definitely is not.",,,,,,
+Quorum,"a quorum is the minimum number of servers
+ on which a distributed operation needs to be
+ performed successfully before declaring the
+ operation’s overall success.","R+W > N
+1 < R < W < N
+",,,,,
+Distributed Message Queues,SQS / Azure service bus,"Visibility Timeout:
+Worker needs to delete dequeued item from Q within visibility timeout
+",,,,,
+Streaming Queue,Kafka/ Kinesis Streams/ Azure EventHub,,,,,,
+Reverse Index database,Elastic Search,,,,,,
+Blob Storage,S3/Azure Blob Storage,,,,,,
+Hourly offline rankers/indexers,,,,,,,
+Click Streams,,,,,,,
+80/20 Rule,80% of users query same 20% phrases,,,,,,
+zoo keeper,,,,,,,
+SOAP,,,,,,,
+REST,GET,POST,PUT,PATCH,DELETE,,
+Cache Coherency,,,,,,,
+Block Server,Upload/Download files from cloud storage,DBX,,,,,
+Metadata Server,Metadata files updated in SQL/NoSQL DB,DBX,,,,,
+Synchronization Server,Notify all clients on changes for sync,DBX,,,,,
+IOPS,I/O Per Sec,,,,,,
+Messaging middleware,Scalable message Qs and change notification,DBX,,,,,
+Aggregation Server,Centralized server to aggregate results and return to user,twitter,,,,,
+Combine shard keys,TimeStamp+UserId or UserId+checksum,"Twitter, shortURL etc",,,,,
+"Fanout
+","Push a post: Fanout-on-write
+Pull: Fanout-on-load
+",,,,,,
