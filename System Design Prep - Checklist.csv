@@ -1,0 +1,5 @@
+Clarify requiremnets,,
+Ask QPS,read QPS?,Write QPS?
+Ask SLA,If SLA in ms: Cache,
+Logs/Metrics to emit,,
+What cache strategy to use?,LRU/TTL,
